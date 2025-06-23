@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Global styles for the Toy Robot Simulator */
+
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+html, body
+  height: 100%
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif
+  background: #2a3441
+  color: #ffffff
+  overflow-x: hidden
+
+body
+  margin: 0
+  font-family: inherit
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible
+  outline: 2px solid #00e5ff
+  outline-offset: 2px
+
+/* Remove default button styles */
+button
+  font-family: inherit
+  font-size: inherit
+  line-height: inherit
+  color: inherit
+  background: none
+  border: none
+  padding: 0
+  margin: 0
+  cursor: pointer
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar
+  width: 8px
+
+::-webkit-scrollbar-track
+  background: #3a4651
+
+::-webkit-scrollbar-thumb
+  background: #5a6671
+  border-radius: 4px
+
+::-webkit-scrollbar-thumb:hover
+  background: #6a7681
+
+/* Selection colors */
+::selection
+  background: #00e5ff
+  color: #1a1a1a
+
+::-moz-selection
+  background: #00e5ff
+  color: #1a1a1a

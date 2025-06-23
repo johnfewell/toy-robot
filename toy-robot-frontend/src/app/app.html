@@ -1,0 +1,81 @@
+<div class="robot-simulator">
+  <div class="status-display">
+    <p>Click to place the robot, use the buttons or arrows to move</p>
+  </div>
+
+  <main class="main-content">
+    @if (vm$ | async; as vm) {
+    <div class="game-container">
+      <div class="game-board" #gameBoard>
+        @for (row of grid; track $index; let y = $index) {
+        <div class="grid-row">
+          @for (cell of row; track $index; let x = $index) {
+          <div
+            class="grid-cell"
+            [class.has-robot]="isRobotAtPosition(x, y, vm.position)"
+            (click)="onCellClick(x, y)"
+          >
+            @if (isRobotAtPosition(x, y, vm.position)) {
+            <div class="robot-icon" [class]="vm.robotFacingClass">
+              🤖
+              <div class="robot-direction-arrow">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <polygon points="10,2 14,8 6,8" />
+                </svg>
+              </div>
+            </div>
+            }
+          </div>
+          }
+        </div>
+        }
+      </div>
+
+      <!-- Control Panel -->
+      <div class="control-panel">
+        <div class="movement-controls">
+          <button
+            class="control-btn"
+            (click)="turnLeft()"
+            [disabled]="!vm.isPlaced"
+          >
+            Left
+          </button>
+          <button
+            class="control-btn primary"
+            (click)="moveForward()"
+            [disabled]="!vm.isPlaced"
+          >
+            Move
+          </button>
+          <button
+            class="control-btn"
+            (click)="turnRight()"
+            [disabled]="!vm.isPlaced"
+          >
+            Right
+          </button>
+        </div>
+
+        <button
+          class="report-btn"
+          (click)="getReport()"
+          [disabled]="!vm.isPlaced"
+        >
+          Report
+        </button>
+      </div>
+      @if (vm.statusMessage) {
+      <div class="status-display">
+        <p>{{ vm.statusMessage }}</p>
+      </div>
+      }
+    </div>
+    }
+  </main>
+</div>

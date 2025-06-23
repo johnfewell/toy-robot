@@ -1,0 +1,201 @@
+.robot-simulator
+  min-height: 100vh
+  background: #2a3441
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  padding: 20px
+
+.main-content
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 100%
+  max-width: 600px
+
+.game-container
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 30px
+
+.game-board
+  display: grid
+  grid-template-rows: repeat(5, 1fr)
+  gap: 2px
+  background: #3a4651
+  padding: 10px
+
+.grid-row
+  display: grid
+  grid-template-columns: repeat(5, 1fr)
+  gap: 2px
+
+.grid-cell
+  width: 80px
+  height: 80px
+  background: #4a5661
+  border: 1px solid #5a6671
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: pointer
+  transition: all 0.2s ease
+  position: relative
+
+  &:hover
+    background: #5a6671
+    border-color: #6a7681
+
+  &.has-robot
+    background: #4a5661
+
+.robot-icon
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  position: relative
+
+  .robot-body
+    font-size: 24px
+    line-height: 1
+
+  .robot-direction-arrow
+    position: absolute
+    color: #00e5ff
+    transition: transform 0.3s ease
+
+    svg
+      width: 16px
+      height: 16px
+
+  &.facing-north .robot-direction-arrow
+    top: -8px
+    transform: rotate(0deg)
+
+  &.facing-south .robot-direction-arrow
+    bottom: -8px
+    transform: rotate(180deg)
+
+  &.facing-east .robot-direction-arrow
+    right: -8px
+    transform: rotate(90deg)
+
+  &.facing-west .robot-direction-arrow
+    left: -8px
+    transform: rotate(-90deg)
+
+.control-panel
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 20px
+
+.movement-controls
+  display: flex
+  gap: 10px
+  align-items: center
+
+.control-btn
+  padding: 12px 24px
+  background: #00e5ff
+  color: #1a1a1a
+  border: none
+  border-radius: 6px
+  font-size: 1rem
+  font-weight: 500
+  cursor: pointer
+  transition: all 0.2s ease
+  min-width: 80px
+
+  &:hover:not(:disabled)
+    background: #00b8cc
+    transform: translateY(-1px)
+
+  &:active:not(:disabled)
+    transform: translateY(0)
+
+  &:disabled
+    background: #5a6671
+    color: #8a9199
+    cursor: not-allowed
+
+  &.primary
+    background: #00e5ff
+
+    &:hover:not(:disabled)
+      background: #00b8cc
+
+.report-btn
+  padding: 10px 20px
+  background: transparent
+  color: #00e5ff
+  border: 2px solid #00e5ff
+  border-radius: 6px
+  font-size: 0.9rem
+  font-weight: 500
+  cursor: pointer
+  transition: all 0.2s ease
+  min-width: 100px
+
+  &:hover:not(:disabled)
+    background: #00e5ff
+    color: #1a1a1a
+
+  &:disabled
+    border-color: #5a6671
+    color: #8a9199
+    cursor: not-allowed
+
+.status-display
+  background: #3a4651
+  border: 1px solid #5a6671
+  border-radius: 6px
+  padding: 15px 20px
+  text-align: center
+  min-width: 300px
+  margin-bottom: 30px
+
+  p
+    margin: 0
+    font-size: 0.9rem
+    color: #b4c6d3
+
+@media (max-width: 768px)
+  .robot-simulator
+    padding: 10px
+
+  .header
+    margin-bottom: 20px
+
+    h1
+      font-size: 1.5rem
+
+  .grid-cell
+    width: 50px
+    height: 50px
+
+  .movement-controls
+    flex-direction: column
+    gap: 8px
+
+  .control-btn
+    min-width: 120px
+
+  .status-display
+    min-width: 250px
+    font-size: 0.8rem
+
+// Animation for robot movement
+.robot-icon
+  animation: robotPlaced 0.3s ease-in-out
+
+@keyframes robotPlaced
+  0%
+    transform: scale(0.8)
+    opacity: 0.8
+  100%
+    transform: scale(1)
+    opacity: 1
